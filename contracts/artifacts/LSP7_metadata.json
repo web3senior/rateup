@@ -1,0 +1,477 @@
+{
+	"compiler": {
+		"version": "0.8.29+commit.ab55807c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "LSP26AlreadyFollowing",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "LSP26CannotSelfFollow",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "LSP26NotFollowing",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "follower",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "Follow",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "unfollower",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "Unfollow",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "follow",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "addresses",
+						"type": "address[]"
+					}
+				],
+				"name": "followBatch",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "followerCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "followingCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endIndex",
+						"type": "uint256"
+					}
+				],
+				"name": "getFollowersByIndex",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endIndex",
+						"type": "uint256"
+					}
+				],
+				"name": "getFollowsByIndex",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "follower",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isFollowing",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "unfollow",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "addresses",
+						"type": "address[]"
+					}
+				],
+				"name": "unfollowBatch",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Aratta Labs(PumpRoom)",
+			"custom:emoji": "🤖",
+			"custom:security-contact": "atenyun@gmail.com",
+			"details": "You will find the deployed contract addresses on the repo",
+			"events": {
+				"Follow(address,address)": {
+					"params": {
+						"addr": "The address that is followed by `follower`",
+						"follower": "The address that follows `addr`"
+					}
+				},
+				"Unfollow(address,address)": {
+					"params": {
+						"addr": "The address that is unfollowed by `follower`",
+						"unfollower": "The address that unfollows `addr`"
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"follow(address)": {
+					"params": {
+						"addr": "The address to start following."
+					}
+				},
+				"followBatch(address[])": {
+					"params": {
+						"addresses": "The list of addresses to follow."
+					}
+				},
+				"followerCount(address)": {
+					"params": {
+						"addr": "The address whose followers count is requested."
+					},
+					"returns": {
+						"_0": "The number of followers of `addr`."
+					}
+				},
+				"followingCount(address)": {
+					"params": {
+						"addr": "The address of the follower whose following count is requested."
+					},
+					"returns": {
+						"_0": "The number of addresses that `addr` is following."
+					}
+				},
+				"getFollowersByIndex(address,uint256,uint256)": {
+					"params": {
+						"addr": "The address whose followers are requested.",
+						"endIndex": "The end index of the range (exclusive).",
+						"startIndex": "The start index of the range (inclusive)."
+					},
+					"returns": {
+						"_0": "An array of addresses that are following an addresses."
+					}
+				},
+				"getFollowsByIndex(address,uint256,uint256)": {
+					"params": {
+						"addr": "The address whose followed addresses are requested.",
+						"endIndex": "The end index of the range (exclusive).",
+						"startIndex": "The start index of the range (inclusive)."
+					},
+					"returns": {
+						"_0": "An array of addresses followed by the given address."
+					}
+				},
+				"isFollowing(address,address)": {
+					"params": {
+						"addr": "The address being followed.",
+						"follower": "The address of the follower to check."
+					},
+					"returns": {
+						"_0": "True if `follower` is following `addr`, false otherwise."
+					}
+				},
+				"unfollow(address)": {
+					"params": {
+						"addr": "The address to stop following."
+					}
+				},
+				"unfollowBatch(address[])": {
+					"params": {
+						"addresses": "The list of addresses to unfollow."
+					}
+				}
+			},
+			"title": "LSP7",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"Follow(address,address)": {
+					"notice": "Emitted when following an address."
+				},
+				"Unfollow(address,address)": {
+					"notice": "Emitted when unfollowing an address."
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"follow(address)": {
+					"notice": "Follow an specific address."
+				},
+				"followBatch(address[])": {
+					"notice": "Follow a list of addresses."
+				},
+				"followerCount(address)": {
+					"notice": "Get the number of followers for an address."
+				},
+				"followingCount(address)": {
+					"notice": "Get the number of addresses an address is following."
+				},
+				"getFollowersByIndex(address,uint256,uint256)": {
+					"notice": "Get the list of addresses that follow an address within a specified range."
+				},
+				"getFollowsByIndex(address,uint256,uint256)": {
+					"notice": "Get the list of addresses the given address is following within a specified range."
+				},
+				"isFollowing(address,address)": {
+					"notice": "Check if an address is following a specific address."
+				},
+				"unfollow(address)": {
+					"notice": "Unfollow a specific address."
+				},
+				"unfollowBatch(address[])": {
+					"notice": "Unfollow a list of addresses."
+				}
+			},
+			"notice": "LSP7",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"followingSystem.sol": "LSP7"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@lukso/lsp1-contracts/contracts/ILSP1UniversalReceiver.sol": {
+			"keccak256": "0x5b8764a678dc9d6673eafa8ad0ee6053cdea30acb58015bdf9c93f9f1788b49b",
+			"license": "Apache-2.0",
+			"urls": [
+				"bzz-raw://0e26dcf5d66120b7a0895ddcaec92207e17c63344fca885d2b7e3fe953ec027c",
+				"dweb:/ipfs/QmetAuz9etfz9BG9oPJCwMthnhfd8XvZYLBmMfrPNUm3qV"
+			]
+		},
+		"@lukso/lsp1-contracts/contracts/LSP1Constants.sol": {
+			"keccak256": "0x0f87fc38243fc70316e22814f5a79d9c0770a39f64077cbc6fb5fddfa1d4c23c",
+			"license": "Apache-2.0",
+			"urls": [
+				"bzz-raw://c7d83f054b71dfa5ca48a9a811e6a985ff6b38a9e5f4c220ea2ec3a322cce7cf",
+				"dweb:/ipfs/QmaehpHpqc5dtRCm9BoU8vCY59AeEnmGvmmwPirVr47oGp"
+			]
+		},
+		"@lukso/lsp26-contracts/contracts/ILSP26FollowerSystem.sol": {
+			"keccak256": "0xd71c80510552ecdcd3712ab1c9410d370ae28638c6c6a8017fed47520613b502",
+			"license": "Apache-2.0",
+			"urls": [
+				"bzz-raw://d59ed8946be1ed2016a3867df5236feb6a5d1ef4eae2a96ca2c769cff8c7ebf0",
+				"dweb:/ipfs/QmRWaEwayQB2v91XsinHKMmbQQNBcwwvLaBJ8ypsJhG5q9"
+			]
+		},
+		"@lukso/lsp26-contracts/contracts/LSP26Constants.sol": {
+			"keccak256": "0xa589c9e22f452a70ea5ee65f5db05fd4adbc587994824935348ca4048abcaa5a",
+			"license": "Apache-2.0",
+			"urls": [
+				"bzz-raw://b835b824f4d480a1298e4c96eb500e62e6214091abb3ebe28280e8a2a6cd325b",
+				"dweb:/ipfs/QmPGGStUj9dpKQ5qnpUfV33voiD2foh3LXPo96CqzG6S3g"
+			]
+		},
+		"@lukso/lsp26-contracts/contracts/LSP26Errors.sol": {
+			"keccak256": "0x98a8247259963efaaa52f8c3b4421854a9079614a1f2492c78c6c993558792c7",
+			"license": "Apache-2.0",
+			"urls": [
+				"bzz-raw://1d5706b7fe22da2a1d9f1b1d5294634b152560463fe34a93e1675bf5c7fecaaf",
+				"dweb:/ipfs/QmefoEsNP3wMhBjNMfiJN8RZjV6mGY4N3C6THAd1YRjkNK"
+			]
+		},
+		"@lukso/lsp26-contracts/contracts/LSP26FollowerSystem.sol": {
+			"keccak256": "0xc385c84ad95684263a263bdbe46282714e2c641a0c8c7aabf8b745809bc467a3",
+			"license": "Apache-2.0",
+			"urls": [
+				"bzz-raw://de69d8b0476649442b3de2a50c7e974d4f6709a6b5b2237eb924190dc725d423",
+				"dweb:/ipfs/QmTphSucpT2xPJvoXffYzESstaMDkQZbqaworju3mqFhtN"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/ERC165Checker.sol": {
+			"keccak256": "0x5a08ad61f4e82b8a3323562661a86fb10b10190848073fdc13d4ac43710ffba5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6f7bb74cf88fd88daa34e118bc6e363381d05044f34f391d39a10c0c9dac3ebd",
+				"dweb:/ipfs/QmNbQ3v8v4zuDtg7VeLAbdhAm3tCzUodNoDZZ8ekmCHWZX"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f",
+				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
+			]
+		},
+		"@openzeppelin/contracts/utils/structs/EnumerableSet.sol": {
+			"keccak256": "0x9f4357008a8f7d8c8bf5d48902e789637538d8c016be5766610901b4bba81514",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://20bf19b2b851f58a4c24543de80ae70b3e08621f9230eb335dc75e2d4f43f5df",
+				"dweb:/ipfs/QmSYuH1AhvJkPK8hNvoPqtExBcgTB42pPRHgTHkS5c5zYW"
+			]
+		},
+		"followingSystem.sol": {
+			"keccak256": "0xae93e9e99d459bf37cc4a3987b25efdc90a8e562fad2b39c978f96ed7b68effe",
+			"license": "Apache-2.0",
+			"urls": [
+				"bzz-raw://d206b26041ae8ccbf3f9946ab2e7896d30d71e60e5771f0ec59b8599da5244e9",
+				"dweb:/ipfs/QmQbozTiWxEq63H7Rm6icEbqcbMGECr1tLkYq7ZcXFXBJ1"
+			]
+		}
+	},
+	"version": 1
+}

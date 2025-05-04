@@ -1,0 +1,74 @@
+.form {
+  select,
+  textarea,
+  input[type='text'],
+  input[type='search'],
+  input[type='date'],
+  input[type='password'],
+  input[type='email'],
+  input[type='file'],
+  input[type='number'],
+  input[type='datetime-local'] {
+    /* Frame 37158 */
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 0px 0px 25px;
+    gap: 64.37px;
+
+    padding: 0.6rem 1.5rem;
+
+    background: rgba(32, 40, 50, 0.54);
+    border: 2.55591px solid rgba(71, 59, 30, 0.4);
+    border-radius: 2553.35px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+width: 100%;
+    color: var(--white);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled,
+    &[readonly] {
+      background-color: rgba(94, 94, 94, 0.466);
+      opacity: 1;
+    }
+
+    &:hover {
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 0 4px rgba(13, 153, 255, 0.1);
+    }
+
+    &:focus,
+    &:active {
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 0 4px rgba(13, 153, 255, 0.1);
+    }
+  }
+
+  label {
+    position: relative;
+
+    &[data-required='true'] {
+      &:after {
+        content: '*';
+        color: var(--red-500);
+        padding: 0 0.1rem;
+      }
+    }
+  }
+}
+
+.form-group {
+
+}

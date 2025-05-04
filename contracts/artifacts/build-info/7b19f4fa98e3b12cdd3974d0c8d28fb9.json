@@ -1,0 +1,353 @@
+{
+	"id": "7b19f4fa98e3b12cdd3974d0c8d28fb9",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.29",
+	"solcLongVersion": "0.8.29+commit.ab55807c",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"Event.sol": {
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.29;\r\n\r\nevent EndorsementGiven(address indexed target,address indexed endorser, string indexed option, string message, uint256 fee,uint256 timestamp);\r\nevent EndorsementOptionAdded(string option);\r\nevent FeeUpdated(uint256 fee);"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"sources": {
+			"Event.sol": {
+				"ast": {
+					"absolutePath": "Event.sol",
+					"exportedSymbols": {
+						"EndorsementGiven": [
+							15
+						],
+						"EndorsementOptionAdded": [
+							19
+						],
+						"FeeUpdated": [
+							23
+						]
+					},
+					"id": 24,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".29"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "33:24:0"
+						},
+						{
+							"anonymous": false,
+							"eventSelector": "cee636f0c13aaa861e26f59625e55d15ab4af806aef7de8ee49c13390256a0e8",
+							"id": 15,
+							"name": "EndorsementGiven",
+							"nameLocation": "67:16:0",
+							"nodeType": "EventDefinition",
+							"parameters": {
+								"id": 14,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 3,
+										"indexed": true,
+										"mutability": "mutable",
+										"name": "target",
+										"nameLocation": "100:6:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 15,
+										"src": "84:22:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										},
+										"typeName": {
+											"id": 2,
+											"name": "address",
+											"nodeType": "ElementaryTypeName",
+											"src": "84:7:0",
+											"stateMutability": "nonpayable",
+											"typeDescriptions": {
+												"typeIdentifier": "t_address",
+												"typeString": "address"
+											}
+										},
+										"visibility": "internal"
+									},
+									{
+										"constant": false,
+										"id": 5,
+										"indexed": true,
+										"mutability": "mutable",
+										"name": "endorser",
+										"nameLocation": "123:8:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 15,
+										"src": "107:24:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										},
+										"typeName": {
+											"id": 4,
+											"name": "address",
+											"nodeType": "ElementaryTypeName",
+											"src": "107:7:0",
+											"stateMutability": "nonpayable",
+											"typeDescriptions": {
+												"typeIdentifier": "t_address",
+												"typeString": "address"
+											}
+										},
+										"visibility": "internal"
+									},
+									{
+										"constant": false,
+										"id": 7,
+										"indexed": true,
+										"mutability": "mutable",
+										"name": "option",
+										"nameLocation": "148:6:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 15,
+										"src": "133:21:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_string_memory_ptr",
+											"typeString": "string"
+										},
+										"typeName": {
+											"id": 6,
+											"name": "string",
+											"nodeType": "ElementaryTypeName",
+											"src": "133:6:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											}
+										},
+										"visibility": "internal"
+									},
+									{
+										"constant": false,
+										"id": 9,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "message",
+										"nameLocation": "163:7:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 15,
+										"src": "156:14:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_string_memory_ptr",
+											"typeString": "string"
+										},
+										"typeName": {
+											"id": 8,
+											"name": "string",
+											"nodeType": "ElementaryTypeName",
+											"src": "156:6:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											}
+										},
+										"visibility": "internal"
+									},
+									{
+										"constant": false,
+										"id": 11,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "fee",
+										"nameLocation": "180:3:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 15,
+										"src": "172:11:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 10,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "172:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									},
+									{
+										"constant": false,
+										"id": 13,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "timestamp",
+										"nameLocation": "192:9:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 15,
+										"src": "184:17:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 12,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "184:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "83:119:0"
+							},
+							"src": "61:142:0"
+						},
+						{
+							"anonymous": false,
+							"eventSelector": "8329f95e4544f4e52f94f1889c321525f3ab368f971c4ad352ba31b4ea8fed56",
+							"id": 19,
+							"name": "EndorsementOptionAdded",
+							"nameLocation": "211:22:0",
+							"nodeType": "EventDefinition",
+							"parameters": {
+								"id": 18,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 17,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "option",
+										"nameLocation": "241:6:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 19,
+										"src": "234:13:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_string_memory_ptr",
+											"typeString": "string"
+										},
+										"typeName": {
+											"id": 16,
+											"name": "string",
+											"nodeType": "ElementaryTypeName",
+											"src": "234:6:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "233:15:0"
+							},
+							"src": "205:44:0"
+						},
+						{
+							"anonymous": false,
+							"eventSelector": "8c4d35e54a3f2ef1134138fd8ea3daee6a3c89e10d2665996babdf70261e2c76",
+							"id": 23,
+							"name": "FeeUpdated",
+							"nameLocation": "257:10:0",
+							"nodeType": "EventDefinition",
+							"parameters": {
+								"id": 22,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 21,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "fee",
+										"nameLocation": "276:3:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 23,
+										"src": "268:11:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 20,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "268:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "267:13:0"
+							},
+							"src": "251:30:0"
+						}
+					],
+					"src": "33:248:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

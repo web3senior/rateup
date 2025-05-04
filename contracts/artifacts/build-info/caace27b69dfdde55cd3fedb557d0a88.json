@@ -1,0 +1,132 @@
+{
+	"id": "caace27b69dfdde55cd3fedb557d0a88",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.29",
+	"solcLongVersion": "0.8.29+commit.ab55807c",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"Error.sol": {
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.29;\r\n\r\nerror Unauthorized();\r\nerror InsufficientBalance(uint256);"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"sources": {
+			"Error.sol": {
+				"ast": {
+					"absolutePath": "Error.sol",
+					"exportedSymbols": {
+						"InsufficientBalance": [
+							7
+						],
+						"Unauthorized": [
+							3
+						]
+					},
+					"id": 8,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".29"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "33:24:0"
+						},
+						{
+							"errorSelector": "82b42900",
+							"id": 3,
+							"name": "Unauthorized",
+							"nameLocation": "67:12:0",
+							"nodeType": "ErrorDefinition",
+							"parameters": {
+								"id": 2,
+								"nodeType": "ParameterList",
+								"parameters": [],
+								"src": "79:2:0"
+							},
+							"src": "61:21:0"
+						},
+						{
+							"errorSelector": "92665351",
+							"id": 7,
+							"name": "InsufficientBalance",
+							"nameLocation": "90:19:0",
+							"nodeType": "ErrorDefinition",
+							"parameters": {
+								"id": 6,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 5,
+										"mutability": "mutable",
+										"name": "",
+										"nameLocation": "-1:-1:-1",
+										"nodeType": "VariableDeclaration",
+										"scope": 7,
+										"src": "110:7:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 4,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "110:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "109:9:0"
+							},
+							"src": "84:35:0"
+						}
+					],
+					"src": "33:86:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
