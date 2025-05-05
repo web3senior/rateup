@@ -249,7 +249,7 @@ function Home() {
  * @returns
  */
 const Score = ({ endorsements }) => {
-  const [icon, setIcon] = useState([`☺`, `▲`, `□`])
+  const [icon, setIcon] = useState([`☺`, `▲`, `□`,`֍`,`*`])
   const [badge, setBadge] = useState()
   const web3Readonly = new Web3(import.meta.env.VITE_LUKSO_PROVIDER)
   function getRandomColor() {

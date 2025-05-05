@@ -93,7 +93,6 @@ The contract owner has the following privileges:
 * More sophisticated badge system.
 * User search functionality.
 * Improved frontend interface.
-* Universal Profiles integration.
 
 ### 9. Contributing
 
