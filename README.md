@@ -2,7 +2,8 @@
 
 RateUp is a decentralized application (dApp) built on the LUKSO blockchain that allows users to endorse others for specific skills or qualities. It establishes a transparent, community-driven reputation system where individuals can showcase their verified abilities and enhance their credibility within the Web3 ecosystem. The smart contract ensures that endorsements are immutable and that the contract owner can manage the available endorsement options.
 
-## README.md
+## Wireframe
+<img src="./wireframe.png">
 
 ### Table of Contents
 
