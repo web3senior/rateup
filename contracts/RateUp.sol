@@ -26,6 +26,7 @@ contract RateUp is Ownable, Pausable {
     }
 
     mapping(address => EndorsementStruct[]) public endorsements;
+    mapping(address => mapping(address => mapping(string => bool))) public hasEndorsed; // target => endorser => option => hasEndorsed
     string[] public endorsementOptions;
 
     constructor() {
@@ -60,6 +61,7 @@ contract RateUp is Ownable, Pausable {
         }
 
         require(optionValid, "Invalid endorsement option");
+        require(!hasEndorsed[target][_msgSender()][option], "You have already endorsed this target for this option.");
 
         // Chk fee
         if (fee > 0) {
@@ -71,6 +73,7 @@ contract RateUp is Ownable, Pausable {
         EndorsementStruct memory newEndorsement = EndorsementStruct(_msgSender(), option, message, score, block.timestamp);
 
         endorsements[target].push(newEndorsement);
+        hasEndorsed[target][_msgSender()][option] = true; // Mark as endorsed
 
         emit EndorsementGiven(target, _msgSender(), option, message, fee, block.timestamp);
     }

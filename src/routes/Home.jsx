@@ -3,12 +3,12 @@ import toast, { Toaster } from 'react-hot-toast'
 import Metadata from '../assets/metadata.json'
 import { useUpProvider } from '../contexts/UpProvider'
 import { PinataSDK } from 'pinata'
-import ABI from '../abi/MiniReward.json'
+import ABI from '../abi/rateup.json'
 import Coin from './../assets/coin.svg'
 import DefaultPFP from './../assets/default-pfp.svg'
 import ConnectArrow from './../assets/connect-arrow.svg'
 import Aratta from './../assets/aratta.svg'
-
+import MaterialIcon from './../helper/MaterialIcon'
 import Default from './../assets/default.png'
 import moment from 'moment'
 
@@ -23,8 +23,8 @@ const pinata = new PinataSDK({
 
 function Home() {
   const [userType, setUserType] = useState()
-  const [reward, setReward] = useState()
-  const [tokenDetails, setTokenDetails] = useState()
+  const [endorsements, setEndorsements] = useState()
+  const [endorsementOptions, setEndorsementOptions] = useState()
 
   const navigate = useNavigate()
 
@@ -66,23 +66,28 @@ function Home() {
     }
   }
 
-  const getReward = async (addr) => await contractReadonly.methods.rewards(addr).call()
-  const getHasClaimed = async (hostAddr, visitorAddr) => await contractReadonly.methods.hasClaimed(hostAddr, visitorAddr).call()
+  const getEndorsementOptions = async () => await contractReadonly.methods.getEndorsementOptions().call()
+  const getEndorsements = async (addr) => await contractReadonly.methods.getEndorsements(addr).call()
   const getSwipePrice = async () => await contractReadonly.methods.swipePrice().call()
   const getWhitelist = async (addr) => await contractReadonly.methods.getWhitelist(addr).call()
   const getSwipePool = async (tokenId) => await contractReadonly.methods.swipePool(tokenId).call()
   const getTokenIdsOf = async (addr) => await contractReadonly.methods.tokenIdsOf(addr).call()
 
-  const claim = async (e) => {
+  const submitRate = async (e) => {
+    e.preventDefault()
     e.target.disabled = true
     const web3 = new Web3(auth.provider)
     const contract = new web3.eth.Contract(ABI, import.meta.env.VITE_CONTRACT)
 
     const t = toast.loading(`Waiting for transaction's confirmation`)
+    const formData = new FormData(e.target)
+    const option = formData.get('option')
+    const message = formData.get('message')
+    const score = formData.get('score')
 
     try {
       contract.methods
-        .claimReward(auth.contextAccounts[0], '0x')
+        .giveEndorsement(auth.contextAccounts[0], option, message, score)
         .send({
           from: auth.accounts[0],
         })
@@ -93,16 +98,9 @@ function Home() {
           e.target.disabled = false
 
           // Refetch info
-          getReward(auth.contextAccounts[0]).then((res) => {
+          getEndorsements(auth.contextAccounts[0]).then((res) => {
             console.log(res)
-            setReward(res)
-
-            if (res.rewardTokenAddress !== `0x0000000000000000000000000000000000000000`) {
-              get_lsp7(res.rewardTokenAddress).then((res) => {
-                console.log(res)
-                setTokenDetails(res)
-              })
-            }
+            setEndorsements(res)
           })
         })
         .catch((error) => {
@@ -168,16 +166,14 @@ function Home() {
   useEffect(() => {
     console.clear()
 
-    getReward(auth.contextAccounts[0]).then((res) => {
+    getEndorsementOptions().then((res) => {
       console.log(res)
-      setReward(res)
+      setEndorsementOptions(res)
+    })
 
-      if (res.rewardTokenAddress !== `0x0000000000000000000000000000000000000000`) {
-        get_lsp7(res.rewardTokenAddress).then((res) => {
-          console.log(res)
-          setTokenDetails(res)
-        })
-      }
+    getEndorsements(auth.contextAccounts[0]).then((res) => {
+      console.log(res)
+      setEndorsements(res)
     })
 
     auth.accounts[0] === auth.contextAccounts[0] ? setUserType(`owner`) : setUserType(`visitor`)
@@ -188,7 +184,7 @@ function Home() {
       <div className={`${styles.page}`}>
         <Toaster />
 
-        {auth.walletConnected && <Profile addr={auth.accounts[0]} />}
+        {auth.walletConnected && <Profile addr={auth.contextAccounts[0]} />}
 
         {!auth.walletConnected && (
           <figure className={`${styles.connectWallet}`}>
@@ -197,48 +193,45 @@ function Home() {
         )}
         <main className={`${styles.main}`}>
           <div className={`__container`} data-width={`small`}>
-            <figure className={`d-f-c grid--gap-1`}>
-              <img src={Coin} className={`rounded`} style={{ width: `84px` }} alt="" />
-              <figcaption>{reward && <>{new Intl.NumberFormat({ maximumSignificantDigits: 3 }).format(web3Readonly.utils.fromWei(_.toNumber(reward.rewardAmount), `ether`))}</>}</figcaption>
-            </figure>
+            {endorsements && endorsements.length > 0 && <Score endorsements={endorsements} />}
 
-            {reward && (
-              <>
-                <h2>
-                  ⚡ {_.toNumber(reward.claimInterval) / 60 / 60}h / {new Intl.NumberFormat({ maximumSignificantDigits: 3 }).format(web3Readonly.utils.fromWei(_.toNumber(reward.rewardAmount), `ether`))}{' '}
-                  {tokenDetails && <>${tokenDetails.data.Asset[0].lsp4TokenSymbol}</>}
-                </h2>
-                {/* _.toNumber(reward.claimInterval) */}
-                {auth.walletConnected && <NextClaim />}
-              </>
-            )}
+            <form onSubmit={(e) => submitRate(e)} className={`form d-flex flex-column`} style={{ rowGap: '1rem' }}>
+              <select name={`option`}>
+                {endorsementOptions &&
+                  endorsementOptions.length > 0 &&
+                  endorsementOptions.map((item, i) => (
+                    <option key={i} value={item}>
+                      {item}
+                    </option>
+                  ))}
+              </select>
 
-            {reward && tokenDetails && (
-              <div className={`${styles.progressbar}`}>
-                <div style={{ '--w': `${(web3Readonly.utils.fromWei(_.toNumber(reward.remainderAmount), `ether`) * 100) / web3Readonly.utils.fromWei(_.toNumber(reward.totalAmount), `ether`)}%` }}>
-                  <span>
-                    {new Intl.NumberFormat({ maximumSignificantDigits: 3 }).format(web3Readonly.utils.fromWei(_.toNumber(reward.remainderAmount), `ether`))} {tokenDetails && <>${tokenDetails.data.Asset[0].lsp4TokenSymbol}</>}
-                  </span>
-                </div>
+              <div>
+                <label htmlFor="">Message</label>
+                <textarea type="text" name="message" placeholder="Message" />
               </div>
-            )}
+
+              <label htmlFor="">Score</label>
+              <select name={`score`}>
+                <option value={1}>⭐</option>
+                <option value={2}>⭐⭐</option>
+                <option value={3}>⭐⭐⭐</option>
+                <option value={4}>⭐⭐⭐⭐</option>
+                <option value={5}>⭐⭐⭐⭐⭐</option>
+              </select>
+
+              <button className="mt-20 btn" type="submit">
+                Submit
+              </button>
+            </form>
 
             <div className={`${styles.action} d-f-c flex-row w-100`}>
-              <button
-                onClick={(e) => claim(e)}
-                disabled={!auth.walletConnected}
-                //  disabled={reward && reward.rewardTokenAddress === `0x0000000000000000000000000000000000000000`}>
-              >
-                {reward && reward.isClaimingEnabled ? `Claim` : `Claim (Not Active)`}
-              </button>
               {auth.walletConnected && userType === 'owner' && (
                 <button onClick={(e) => navigate(`deposit`)} disabled={!auth.walletConnected}>
-                  Deposit
+                  View profiles
                 </button>
               )}
             </div>
-
-            <small className={`mt-10`}>In order to claim, you need to follow the profile first!</small>
           </div>
 
           <figure className={`d-f-c mt-20 ${styles.aratta}`}>
@@ -255,7 +248,78 @@ function Home() {
  * @param {String} addr
  * @returns
  */
-const NextClaim = ({ addr }) => {
+const Score = ({ endorsements }) => {
+  const [icon, setIcon] = useState([`☺`, `▲`, `🦾`])
+  const [badge, setBadge] = useState()
+  const web3Readonly = new Web3(import.meta.env.VITE_LUKSO_PROVIDER)
+  function getRandomColor() {
+    // Generate random values for Red, Green, and Blue (0-255)
+    const r = Math.floor(Math.random() * 256)
+    const g = Math.floor(Math.random() * 256)
+    const b = Math.floor(Math.random() * 256)
+
+    // Return the color in RGB format
+    return `rgb(${r}, ${g}, ${b})`
+  }
+  let newObject = []
+
+  endorsements.map((obj, i) => {
+    obj.counter = 1
+    obj.score = web3Readonly.utils.toNumber(obj.score)
+
+    let hasFound = false
+    newObject.map((item, i) => {
+      if (item.option === obj.option) {
+        newObject[i].counter += 1
+        newObject[i].score = web3Readonly.utils.toNumber(newObject[i].score) + web3Readonly.utils.toNumber(obj.score)
+        hasFound = true
+      }
+    })
+
+    if (!hasFound) newObject.push(obj)
+  })
+
+  console.log(newObject)
+
+  const Star = ({ score, i }) => {
+    console.log(score)
+    let badges = []
+    for (let index = 0; index < score; index++) {
+      badges.push(<span>{icon[i]}</span>)
+    }
+    return <div style={{ color: `${getRandomColor()}`, fontSize: `24px` }}>{badges}</div>
+  }
+
+  useEffect(() => {}, [])
+
+  //if (!badge) return <>reading...</>
+
+  return (
+    <>
+      {newObject.map((item, i) => (
+        <div key={i} className={`card`}>
+          <div className={`card__body d-flex align-items-center justify-content-between`}>
+            <div>
+              <b>
+                {item.option} ({item.counter})
+              </b>
+            </div>
+            <span>
+              <Star score={Math.round(item.score / item.counter)} i={i} />
+            </span>
+          </div>
+        </div>
+      ))}
+    </>
+  )
+}
+
+/**
+ * Profile
+ * @param {String} addr
+ * @returns
+ */
+const test = ({ addr }) => {
   const [data, setData] = useState()
 
   const auth = useUpProvider()
@@ -277,7 +341,6 @@ const NextClaim = ({ addr }) => {
 
   return <small>{auth.walletConnected ? (_.toNumber(data.nextClaim) === 0 ? `Claim Now` : `Next claim: ${moment.unix(_.toNumber(data.nextClaim)).utc().fromNow()}`) : `-`}</small>
 }
-
 /**
  * Profile
  * @param {String} addr
@@ -302,6 +365,7 @@ const Profile = ({ addr }) => {
   ) {
     fullName
     name
+    description
     id
     profileImages {
       src
@@ -334,7 +398,7 @@ const Profile = ({ addr }) => {
     )
 
   return (
-    <>
+    <div className={`__container`} data-width={`small`}>
       <figure className={`${styles.pfp} d-f-c flex-column grid--gap-050`}>
         <img
           alt={data.data.search_profiles[0].fullName}
@@ -343,7 +407,12 @@ const Profile = ({ addr }) => {
         />
         <figcaption>@{data.data.search_profiles[0].name}</figcaption>
       </figure>
-    </>
+      <div className={`text-center text-dark`}>
+        <div className={`card__body`} style={{ padding: `0rem` }}>
+          <small>{data.data.search_profiles[0].description}</small>
+        </div>
+      </div>
+    </div>
   )
 }
 

@@ -10,7 +10,7 @@
 
   --theme: #ff5cef;
 
-  background: radial-gradient(38.44% 57.66% at 50% -11.09%, #4b3e1f 0%, #080a0c 100%);
+  background: var(--white);
 
   min-height: 100dvh;
 
@@ -47,8 +47,8 @@
 
 figure.pfp {
   img {
-    width: 128px;
-    height: 128px;
+    width: 72px;
+    height: 72px;
     background: rgba(147, 141, 141, 0.07);
     backdrop-filter: blur(2.5px);
     background: linear-gradient(222.27deg, #b1a084 15.52%, #836e36 85.68%), #ffffff;
@@ -57,7 +57,7 @@ figure.pfp {
 
   figcaption {
     font-weight: bolder;
-    color: #fffdea;
+    color: #000;
     font-size: 2.5vw;
   }
 }
@@ -67,7 +67,6 @@ figure.pfp {
   top: 0.8rem;
 }
 .main {
-  color: var(--white, #fff);
 
   figure {
     margin-bottom: 1rem;

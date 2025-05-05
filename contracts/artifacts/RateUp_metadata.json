@@ -348,6 +348,35 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "hasEndorsed",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "owner",
 				"outputs": [
@@ -571,11 +600,11 @@
 			]
 		},
 		"RateUp.sol": {
-			"keccak256": "0xb95d25aa59be8a7e7a5f7806d4cdc09120776be48ad8e51e8b276c98a7da42dc",
+			"keccak256": "0xd048a78c495c1e6b4626c8f166cb2a4daf95cb225fd2900aba7218f9af248c58",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://df6e99c88ac574a77198ef3d8113a720df955e15dfe839cfcb4b471e19051cef",
-				"dweb:/ipfs/QmeRopMm7FTPv1fvQckfAgoP8mTEzzwr7jkFdnXisBqjQd"
+				"bzz-raw://0aeef48239aa0d0d57735e029fafdd042c85d1f61b7434eaed7ce2dfd76bf0c8",
+				"dweb:/ipfs/QmNyYTwmG9j79qJhT1cgaKs1ZUn2NeP4YCqrddbr2ZVipU"
 			]
 		}
 	},
