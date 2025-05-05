@@ -5,6 +5,11 @@ RateUp is a decentralized application (dApp) built on the LUKSO blockchain that 
 ## Wireframe
 <img src="./wireframe.png">
 
+## Formula to Calculate Average Scores (1-5)
+```shell
+Average Score = (Score1 + Score2 + ... + ScoreN) / N
+```
+
 ### Table of Contents
 
 1.  [About RateUp](#about-rateup)
